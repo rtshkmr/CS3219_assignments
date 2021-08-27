@@ -1,0 +1,3 @@
+[submodule "taskA/CarbonEconomy"]
+	path = taskA/CarbonEconomy
+	url = https://github.com/CarbonEconomy/CarbonEconomy.git

@@ -1,0 +1,14 @@
+{
+  "name": "a1_introductiontodocker",
+  "version": "1.0.0",
+  "description": "Just a demo application to coordinate docker and nginx",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ritesh Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
