@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  nodejs:
+    image: rest-app
+    restart: on-failure
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    depends_on: # arranges the services in order but doesn't guarantee that the services kept in order will be executing first ==> hence the need to use a shell script to ensure that the db is up before spinning up the front end server
+      - db
+    ports:
+      - "4000:4000"
+    entrypoint: ["sh","./wait.sh"] # called from within the context (?)
+
+  db:
+    image: mysql:8.0.21
+    command: --default-authentication-plugin=mysql_native_password
+    restart: on-failure
+    ports:
+      - "33000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
