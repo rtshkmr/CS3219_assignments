@@ -25,6 +25,11 @@ app.get("/", (req, res, next) => {
 	res.json("What's up?");
 });
 
+// ritesh
+app.get("/rk", (req, res, next) => {
+    res.json("What's up Ritesh");
+});
+
 server.listen(port, () => {
     console.log('Listening on port: ' + port);
 });

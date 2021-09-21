@@ -1,0 +1,107 @@
+# Deployment for node server:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: nodejs
+  namespace: default
+spec: # specification for this deployment:
+  replicas: 3 # to create 3 replica pods
+  selector: # defines how Deployment finds which pods to manage, via pod labels
+    matchLabels:
+      app: nodejs
+  template: # for each pod:
+    metadata:
+      labels:
+        app: nodejs # helps the deployment identify this is the pod via name "app:nodejs"
+    spec: # template specifications:
+      containers:
+        - command:
+            - sh
+            - ./wait.sh
+          image: demo-rest-app
+          imagePullPolicy: Never
+          name: nodejs
+          ports:
+            - containerPort: 4000
+          resources: { }
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  #    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+  #      convert
+  #    kompose.version: 1.21.0 (992df58d8)
+  #  creationTimestamp: null
+  #  labels:
+  #    io.kompose.service: nodejs
+  name: nodejs-entrypoint
+spec:
+  type: NodePort
+  selector:
+    app: nodejs # needs to be the same name-label selector?
+  ports:
+    - name: "4000"
+      port: 4000
+      targetPort: 4000
+      nodePort: 30007
+#status:
+#  loadBalancer: {}
+
+---
+# Deployment for db:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: db
+  namespace: default
+spec: # specification for this deployment:
+  replicas: 3 # to create 3 replica pods
+  selector: # defines how Deployment finds which pods to manage, via pod labels
+    matchLabels:
+      app: db
+  template: # for each pod:
+    metadata:
+      labels:
+        app: db # helps the deployment identify this is the pod via name "app:nodejs"
+    spec:
+      containers:
+        - args:
+            - --default-authentication-plugin=mysql_native_password
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          image: mysql:8.0.21
+          name: db
+          ports:
+            - containerPort: 3306
+          resources: { }
+      restartPolicy: Always
+---
+# db service:
+
+# Networking service for the nodejs application
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  #    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+  #      convert
+  #    kompose.version: 1.21.0 (992df58d8)
+  #  creationTimestamp: null
+  #    labels:
+  #      io.kompose.service: nodejs
+  name: db
+spec:
+  #  type: NodePort
+  selector:
+    app: db # needs to be the same name-label selector?
+  ports:
+    - name: "33000"
+      port: 33000
+      targetPort: 3306

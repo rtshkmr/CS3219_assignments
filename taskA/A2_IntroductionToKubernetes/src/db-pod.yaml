@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  containers:
+    - args:
+        - --default-authentication-plugin=mysql_native_password
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+      image: mysql:8.0.21
+      name: db
+      ports:
+        - containerPort: 3306
+      resources: { }
+  restartPolicy: OnFailure
+status: { }

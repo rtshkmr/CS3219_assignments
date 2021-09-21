@@ -12,5 +12,5 @@ COPY . .
 
 RUN apt-get update && apt-get install -y netcat
 
-COPY ./wait.sh ./wait.sh
-RUN chmod +x ./wait.sh
+COPY wait.sh /wait.sh
+RUN chmod +x /wait.sh

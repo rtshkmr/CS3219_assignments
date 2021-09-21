@@ -2,7 +2,7 @@ version: "3"
 
 services:
   nodejs:
-    image: rest-app
+    image: demo-rest-app
     restart: on-failure
     build:
       context: ./app
@@ -11,7 +11,7 @@ services:
       - db
     ports:
       - "4000:4000"
-    entrypoint: ["sh","./wait.sh"] # called from within the context (?)
+    entrypoint: ["sh", "./wait.sh"] # called from within the context (?)
 
   db:
     image: mysql:8.0.21
