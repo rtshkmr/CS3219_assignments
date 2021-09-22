@@ -1,3 +1,6 @@
 [submodule "taskA/CarbonEconomy"]
 	path = taskA/CarbonEconomy
 	url = https://github.com/CarbonEconomy/CarbonEconomy.git
+[submodule "taskA/A2_IntroductionToKubernetes/docker_tut"]
+	path = taskA/A2_IntroductionToKubernetes/docker_tut
+	url = https://github.com/docker/getting-started.git
