@@ -64,7 +64,14 @@ pointers on usage:
 1. [How to test](https://stackoverflow.com/a/55327121/15357683) when there's a mongo client being applied to your server application (and hence the server application would complain if you just pass in an export keyword)
 
 2. Local testing:
+   How to run test:
+   1. navigate to [taskB/backend](/taskB/backend) directory and via cli, run `npm test` to get the following test output:
    ![output of testing](resources/local_testing.png)
+
+3. Travis CI testing, [see log here](https://app.travis-ci.com/github/rtshkmr/CS3219_assignments/builds/238360933).
+   Config file can be found here [Travis CI Config File](../.travis.yml)
+   ![Travis CI testing](resources/Using_travis.png)
+4. 
 
 ### Issues Faced:
 
