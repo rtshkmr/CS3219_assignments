@@ -1,15 +1,11 @@
+language: node_js
+node_js:
+- 14
+before_install:
+- cd ./taskB/backend/ && npm install
+script:
+- echo "Hello Ritesh" && pwd
+- npm test
 env:
   global:
     secure: LeDhebsPA3B4viyMG8Q7cUVMBKX/W5xY1bJ/oopseJYpj3GhElh54TES92ZsLW9PRfwH7ma3dngyxD09lJg7lLlYY1mYzS7OV0FDw25kdAYqPJVXfbVR2R/DG/L7a+U/loBU9F45BiBAC7jk4ppK9DQa8mSeB5TNBDsb3oWo6FKnk89q/eAytH6jt12HigL+6IDXPvQzvD/x9BbO9t0jONi5KHLRR9rmjirBRBkIV8qs97ITtWkN2vQfHG3s2iegu0FRSpJpFJWXAbXAjpCSCfyoty1Fmb3B0JXhCh5OPobN7wpqsHY+J9dAvejF7vTXm6u3uWb4gyKxRR6G467MhOUzQg29ZpJvHnTflDJhqwSWLFiWer+7ulUGVc1WuM7ihrYIXZnI3vVt3OeIbLx1Il1ulri+0LoDcGv7BjcW5ztiNANBLazFVmoKJ5u7TWwLxkXuZrRrKBVWiR8NDxO8QWXTNNNpRXPNn9/z4rEBPlgp4H0WBh86VjEgpzePzyxCX9kCVyX/a6PIi4suozceDBFkgTREJnsXTVRU5sW1bqvJZcnVcEgyj07uanfAQTVT7JORTpsdmcFv81VY2I8eTyI9s8zPYtcmsXxJSmUn3oJYVFiIOjYddeFRl5eeia98Jo86qqeqUFAj9uTJfvfiE+1BJU72N+GL7ti2ocqQoMg=
-
-jobs:
-  include:
-    - name: CS3219_TaskB
-      language: node_js
-      node_js:
-        - 14
-      before_install:
-        - cd ./taskB/backend/ && npm install
-      script:
-        - echo "Hello Ritesh" && pwd
-        - npm test
