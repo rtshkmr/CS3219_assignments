@@ -4,7 +4,7 @@
   "description": "Simple express server that does CRUD on quotes with a mongoose db paired with it.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --exit",
     "dev": "nodemon server.js"
   },
   "author": "Ritesh Kumar",
@@ -16,7 +16,10 @@
     "mongodb": "^4.1.2"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "dotenv": "^10.0.0",
+    "mocha": "^9.1.1",
     "nodemon": "^2.0.12"
   }
 }
