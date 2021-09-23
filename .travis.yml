@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - 14
+before_install:
+  - cd ./taskB/backend/ && npm install
+script:
+  - echo "Hello Ritesh" && pwd
+  - npm test
