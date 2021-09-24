@@ -1,4 +1,5 @@
 console.log("Heyya Ritesh, it's been the longest year ever, hasn't it")
+const serverless = require("serverless-http")
 const express = require('express');
 const bodyParser = require("body-parser")
 require('dotenv').config();
@@ -161,5 +162,6 @@ async function start() {
 
 module.exports = server;
 module.exports = app;
+module.exports.handler = serverless(app);
 module.exports.stop = stop;
 module.exports.start = start;
