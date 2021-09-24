@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- 14
+  - 14
 before_install:
-- cd ./taskB/backend/ && npm install
+  - cd ./taskB/backend/ && npm install
 #script:
 #- echo "Hello Ritesh" && pwd
 #- npm test
@@ -14,8 +14,10 @@ jobs:
     - name: Demonstrating Tests
       stage: testing
       script:
+        - echo "currently at"
+        - pwd
         - npm test
-        - echo >>> yay testing done
+        - echo ">>> yay testing done"
     - name: dummy deployment to aws lambda
       stage: deploy
       script: echo ">>>> sup i'm supposed to be a stub for actual deployment"
