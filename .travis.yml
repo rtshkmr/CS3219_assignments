@@ -6,7 +6,6 @@ before_install:
 #script:
 #- echo "Hello Ritesh" && pwd
 #- npm test
-
 env:
   global:
     secure: LeDhebsPA3B4viyMG8Q7cUVMBKX/W5xY1bJ/oopseJYpj3GhElh54TES92ZsLW9PRfwH7ma3dngyxD09lJg7lLlYY1mYzS7OV0FDw25kdAYqPJVXfbVR2R/DG/L7a+U/loBU9F45BiBAC7jk4ppK9DQa8mSeB5TNBDsb3oWo6FKnk89q/eAytH6jt12HigL+6IDXPvQzvD/x9BbO9t0jONi5KHLRR9rmjirBRBkIV8qs97ITtWkN2vQfHG3s2iegu0FRSpJpFJWXAbXAjpCSCfyoty1Fmb3B0JXhCh5OPobN7wpqsHY+J9dAvejF7vTXm6u3uWb4gyKxRR6G467MhOUzQg29ZpJvHnTflDJhqwSWLFiWer+7ulUGVc1WuM7ihrYIXZnI3vVt3OeIbLx1Il1ulri+0LoDcGv7BjcW5ztiNANBLazFVmoKJ5u7TWwLxkXuZrRrKBVWiR8NDxO8QWXTNNNpRXPNn9/z4rEBPlgp4H0WBh86VjEgpzePzyxCX9kCVyX/a6PIi4suozceDBFkgTREJnsXTVRU5sW1bqvJZcnVcEgyj07uanfAQTVT7JORTpsdmcFv81VY2I8eTyI9s8zPYtcmsXxJSmUn3oJYVFiIOjYddeFRl5eeia98Jo86qqeqUFAj9uTJfvfiE+1BJU72N+GL7ti2ocqQoMg=
@@ -19,32 +18,13 @@ jobs:
         - pwd
         - npm test
         - echo ">>> yay testing done"
-    - name: deployment to aws lambda
-        - echo >>> yay testing done
     - name: dummy deployment to aws lambda
       stage: deploy
-      script:
-        - echo ">>>> sup i'm supposed to be a stub for actual deployment, currently at"
-        - pwd
-
+      script: echo ">>>> sup i'm supposed to be a stub for actual deployment"
 
 
 
 before_deploy:
   - cd ./taskB/backend/
 deploy:
-  provider: lambda
-  function_name: "taskb_backend"
-  region: "ap-southeast-1"
-  role: "arn:aws:iam::727167583045:role/cs3219_taskb_lambda_role"
-  runtime: "nodejs14.x"
-  handler_name: "handler"
 
-#env:
-#  global:
-#    # mongo pass and user:
-#    - secure: "LeDhebsPA3B4viyMG8Q7cUVMBKX/W5xY1bJ/oopseJYpj3GhElh54TES92ZsLW9PRfwH7ma3dngyxD09lJg7lLlYY1mYzS7OV0FDw25kdAYqPJVXfbVR2R/DG/L7a+U/loBU9F45BiBAC7jk4ppK9DQa8mSeB5TNBDsb3oWo6FKnk89q/eAytH6jt12HigL+6IDXPvQzvD/x9BbO9t0jONi5KHLRR9rmjirBRBkIV8qs97ITtWkN2vQfHG3s2iegu0FRSpJpFJWXAbXAjpCSCfyoty1Fmb3B0JXhCh5OPobN7wpqsHY+J9dAvejF7vTXm6u3uWb4gyKxRR6G467MhOUzQg29ZpJvHnTflDJhqwSWLFiWer+7ulUGVc1WuM7ihrYIXZnI3vVt3OeIbLx1Il1ulri+0LoDcGv7BjcW5ztiNANBLazFVmoKJ5u7TWwLxkXuZrRrKBVWiR8NDxO8QWXTNNNpRXPNn9/z4rEBPlgp4H0WBh86VjEgpzePzyxCX9kCVyX/a6PIi4suozceDBFkgTREJnsXTVRU5sW1bqvJZcnVcEgyj07uanfAQTVT7JORTpsdmcFv81VY2I8eTyI9s8zPYtcmsXxJSmUn3oJYVFiIOjYddeFRl5eeia98Jo86qqeqUFAj9uTJfvfiE+1BJU72N+GL7ti2ocqQoMg="
-#      # lambda access key pass:
-#    - secure: "UFX5e8HwW8N/aKV2bmlQsKRMdM093UVgfxJWlOQ7Zqy/B5x8NuW2XpoXqv5OgU/4y7SeuUtx2pec8Iru0KvROq3bV7kwHgc58Gajus6yslrbKkOfprMVrjw5cVvFwZsueVIYC1RXG5VFJGd5dVLkfxsONQrxKCZIC7QxECmortHbCI6SoKRo/CwXcl2hzgoWhYYSa45XhkspoSGnCcxbfV/I8YOnYHSBaVzYQecPtc/tE9p2gN1Ez2D1uI+WwSyYJgBSp3JwgHIWPnr3QzPlucu0Opiytq/lpLH4KcyguioevLyy5iuKAUXS02oY1M2Ft+UOiJRkjVfWIZrvK9XOxsKBCFU8feoTiJz+FvbvKEhE2lworPuQ3bOsDWF0rtajstA0H2mAKC/IeGyT7SmlZbz2267Iu5ug0UdumFgP+i6ZjTXvIsXLUAHQVz0etv4kB71hVFbvQYyGtHTGdHrw1mM21WDiJqosUz09vN/8lQ7yb5Zi9rRgGPyJmRsCq4AeLw89mExgqv6mezdAsHsagiO7AazoUdu9I8KTckYb2+xcttP+9NR15wYEZjSAbUfjzVzquCfbmwrqPY1WYoL6iX+XtmiYI9muZJZpfYOzJyMt2A11ZP+ydxyKxTtFaDOiOJ2oYirQaOl6J19NMvX0mdS2d5qmcwGmoPJTFGkcX6s="
-#     lambda access id
-#    - secure: "I2K3CjHV5oVDxbqIAUVS1tD1NXaA2JZBPz5sgG42CtWrttVP3FmeEfpFFu+7laBUH22W/dWpV2SaqnrUT3Me3jf5eLLvoFkeS9unu9NB01IaJk5eoCl/rhFVnbQ7inrtWV6sH6y0vRnFxrG4ez2m9D0HWPXHm80qIULXJMX7L7m4sXjgOYZAGjHSw/2KHhqVMSCMPFzg1OgmaPtVk77xG10t3TugVOlwjhb2d9zOBOE88U+p6waL/gXFdHulFeo0kcGuMQ+d8q7I2hBJW3ZV+y5K22zVYiegVtSTxviLipjx7/61Eok4ymxiyPZ835uvFA0JvQy7KfvYgzXsrcsI7FqiBcDjN7qkAx01peqhxTLQ0x2XoaLhIHIN7jXZlBMck6SaVEfn88XUxa1rMIdGj/q6nKKVyRCWj1fmATypkJsdh4O7hq81KeaE/bTYjy+Ex0dRhgKuGdHgy7at3eC+oq+voagNVwmWG3nAQ5U4xGoK5CNdjRqvLcVpfERj4mHzA1i3m+saVIrgcQRNTSLtx/5p0/Y3MEErWChggnDiuuv9XpnHnVTvvMkFNOyxAKGkqi4IBPdEYR72zpxfLZt7DMRadRneT7XpuHUAN30aDWdX3ms7B6+ZWQz1kWGO4UTMUmMd438QsYnoPGOELQcxzPCD2jsM0o+k1nbNKDp7Mjo="
