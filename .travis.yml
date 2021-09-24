@@ -20,7 +20,9 @@ jobs:
         - echo ">>> yay testing done"
     - name: dummy deployment to aws lambda
       stage: deploy
-      script: echo ">>>> sup i'm supposed to be a stub for actual deployment"
+      script:
+       - echo ">>>> sup i'm supposed to be a stub for actual deployment, currently at"
+       - pwd
 
 
 
