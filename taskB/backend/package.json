@@ -4,7 +4,7 @@
   "description": "Simple express server that does CRUD on quotes with a mongoose db paired with it.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit",
+    "test": "mocha --timeout 10000 --exit",
     "dev": "nodemon server.js"
   },
   "author": "Ritesh Kumar",
