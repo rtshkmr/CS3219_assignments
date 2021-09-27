@@ -159,19 +159,26 @@ async function start() {
 }
 
 
-const awsServerlessExpress = require("aws-serverless-express")
-const myServer = awsServerlessExpress.createServer(app)
+const serverlessExpress = require("@vendia/serverless-express")
+const serverlessExpressInstance = serverlessExpress({app})
+
+// function handler (event, context) {
+//     if(serverlessExpressInstance) {
+//         return serverlessExpressInstance(event, context);
+//     }
+// }
 
 module.exports = server;
 module.exports = app;
-module.exports.handler = async function(event, context) {
-    console.log("EVENT: \n" + JSON.stringify(event, null, 2))
-    console.log("event", event);
-    console.log("context", context);
-    context.callbackWaitsForEmptyEventLoop = false;
-    return awsServerlessExpress.proxy(server, event, context)
-    // return event
-}
+// module.exports.handler = async function(event, context) {
+//     console.log("EVENT: \n" + JSON.stringify(event, null, 2))
+//     console.log("event", event);
+//     console.log("context", context);
+//     context.callbackWaitsForEmptyEventLoop = false;
+//     return awsServerlessExpress.proxy(server, event, context)
+//     // return event
+// }
 // module.exports.handler = serverless(app);
+module.exports.handler = serverlessExpress({app});
 module.exports.stop = stop;
 module.exports.start = start;
