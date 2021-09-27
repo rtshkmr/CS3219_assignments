@@ -159,6 +159,8 @@ async function start() {
 }
 
 
+const awsServerlessExpress = require("aws-serverless-express")
+const myServer = awsServerlessExpress.createServer(app)
 
 module.exports = server;
 module.exports = app;
@@ -167,7 +169,8 @@ module.exports.handler = async function(event, context) {
     console.log("event", event);
     console.log("context", context);
     context.callbackWaitsForEmptyEventLoop = false;
-    return event
+    awsServerlessExpress.proxy(server, event, context)
+    // return event
 }
 // module.exports.handler = serverless(app);
 module.exports.stop = stop;
