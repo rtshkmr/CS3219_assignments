@@ -42,7 +42,8 @@ deploy:
   access_key_id: $AWS_SECRET_ACCESS_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   runtime: "nodejs14.x"
-  handler_name: server.handler
+  module_name: lambda/server
+  handler_name: handler
 
 
 
