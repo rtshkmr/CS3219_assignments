@@ -35,6 +35,8 @@ before_deploy:
   - pwd
 deploy:
   provider: lambda
+  on:
+    all_branches: true
   function_name: test
   region: "ap-southeast-1"
   role: "arn:aws:iam::727167583045:role/cs3219_taskb_lambda_role"
