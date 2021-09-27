@@ -6,6 +6,7 @@ before_install:
 
 install:
   - npm install -g serverless cors
+  - npm install
   - #script:
     #- echo "Hello Ritesh" && pwd
   #- npm test
