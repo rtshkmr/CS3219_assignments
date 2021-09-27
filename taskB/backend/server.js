@@ -169,7 +169,7 @@ module.exports.handler = async function(event, context) {
     console.log("event", event);
     console.log("context", context);
     context.callbackWaitsForEmptyEventLoop = false;
-    awsServerlessExpress.proxy(server, event, context)
+    return awsServerlessExpress.proxy(server, event, context)
     // return event
 }
 // module.exports.handler = serverless(app);
