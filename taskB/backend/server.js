@@ -164,6 +164,9 @@ module.exports = server;
 module.exports = app;
 module.exports.handler = async function(event, context) {
     console.log("EVENT: \n" + JSON.stringify(event, null, 2))
+    console.log("event", event);
+    console.log("context", context);
+
     return context.logStreamName
 }
 // module.exports.handler = serverless(app);
