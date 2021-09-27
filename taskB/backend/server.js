@@ -171,14 +171,14 @@ async function start() {
 }
 
 
-const serverlessExpress = require("@vendia/serverless-express")
+const serverlessExpress = require("aws-serverless-express")
 module.exports = server;
 module.exports = app;
 
 let serverlessExpressInstance
 
 async function setup (event, context) {
-    serverlessExpressInstance = serverlessExpress({app})
+    serverlessExpressInstance = serverlessExpress.createServer(app)
     return serverlessExpressInstance(event, context)
 }
 
