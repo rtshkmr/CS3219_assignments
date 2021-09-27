@@ -35,9 +35,9 @@ before_deploy:
   - pwd
 deploy:
   provider: lambda
-  function_name:test
+  function_name: test
   region: "ap-southeast-1"
-  role:"arn:aws:iam::727167583045:role/cs3219_taskb_lambda_role"
+  role: "arn:aws:iam::727167583045:role/cs3219_taskb_lambda_role"
   access_key_id: $AWS_SECRET_ACCESS_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   handler_name: server.handler
