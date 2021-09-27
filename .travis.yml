@@ -5,8 +5,7 @@ before_install:
   - cd ./taskB/backend/
 
 install:
-  - npm install -g serverless
-  - npm install
+  - npm install -g serverless cors
   - #script:
     #- echo "Hello Ritesh" && pwd
   #- npm test
