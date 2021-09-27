@@ -56,6 +56,12 @@ async function start() {
                     })
                     .catch(error => console.error(error))
             })
+            app.get('/happy', (req, res) => {
+                return res.json({
+                    "name": "happyName",
+                    "quote": "happyQuote"
+                })
+            })
 
             app.get("/api", (request, response) => {
                 db.collection("quotes").find().toArray()
