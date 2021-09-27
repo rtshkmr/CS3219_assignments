@@ -188,6 +188,7 @@ const handler = async function(event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
     console.log("EVENT: \n" + JSON.stringify(event, null, 2))
     console.log("context", JSON.stringify(context));
+    await start()
     let server_ = serverlessExpress.createServer(app)
 
     /*if(serverlessExpressInstance)*/ return serverlessExpress.proxy(server_, event, context, "PROMISE").promise;
