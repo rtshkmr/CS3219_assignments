@@ -41,7 +41,7 @@ deploy:
   role: "arn:aws:iam::727167583045:role/cs3219_taskb_lambda_role"
   access_key_id: $AWS_SECRET_ACCESS_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
-  runtime: "nodejs14.x:w"
+  runtime: "nodejs14.x"
   handler_name: server.handler
 
 
