@@ -30,7 +30,6 @@ jobs:
         - echo $AWS_SECRET_ACCESS_ID
 
 before_deploy:
-  - cd ./taskB/backend/
   - echo "i'm currently at"
   - pwd
 deploy:
