@@ -175,19 +175,23 @@ const serverlessExpress = require("aws-serverless-express")
 module.exports = server;
 module.exports = app;
 
-let serverlessExpressInstance
+let awsServerlessExpress
 
 async function setup (event, context) {
-    serverlessExpressInstance = serverlessExpress.createServer(app)
-    return serverlessExpressInstance(event, context)
+    awsServerlessExpress = serverlessExpress.createServer(app)
+    // return serverlessExpressInstance(event, context)
+    return awsServerlessExpress.proxy(server, event, context, "PROMISE").promise;
+
 }
 
 const handler = async function(event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
     console.log("EVENT: \n" + JSON.stringify(event, null, 2))
     console.log("context", JSON.stringify(context));
-    if(serverlessExpressInstance) return serverlessExpressInstance(event, context)
-    return setup(event, context)
+    let server_ = serverlessExpress.createServer(app)
+
+    /*if(serverlessExpressInstance)*/ return serverlessExpress.proxy(server_, event, context, "PROMISE").promise;
+    // return setup(event, context)
 }
 module.exports.server = server
 module.exports.handler = handler;
