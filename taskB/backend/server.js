@@ -6,6 +6,7 @@ require('dotenv').config();
 const {response, request} = require("express");
 const app = express();
 let port = process.env.PORT || 3000;
+const cors = require("cors")
 const MongoClient = require('mongodb').MongoClient
 
 
@@ -39,6 +40,7 @@ async function start() {
             const quotesCollection = db.collection(collectionName)
             app.use(bodyParser.urlencoded({extended: true}))
             app.use(express.static('public'))
+            app.use(cors())
 
             server = app.listen(port, function () {
                 console.log(`listening on port ${port}`)
