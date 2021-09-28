@@ -30,7 +30,7 @@ jobs:
       - name: Run all chai tests
         run: npm test
         env:
-          CI:true
+          CI: true
       - name: figuring out my place in the world
         run: |
           echo "i'm currently at"
