@@ -17,10 +17,9 @@ jobs:
       run:
         working-directory: ./taskB/backend
     steps:
+      - uses: actions/checkout@v1
       - name: print msg
-        run: |
-        echo hello world,
-        echo kill me already.
+        run: echo hello world
 #      - uses: actions/checkout@v1
 #      - name: Setup Nodejs
 #        uses: actions/setup-node@v1
