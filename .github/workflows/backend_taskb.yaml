@@ -27,15 +27,9 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
       - name: Install dependencies
-        run: |
-          echo " checking current directory befroe installing deps"
-          pwd
-          npm install
+        run: echo " checking current directory befroe installing deps"
       - name: Test Endpoints
-        run: |
-          echo "Checking current directory before running test :"
-          pwd
-          npm test
+        run: npm test
         env:
           CI: true
 #      - name: Install zip
