@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./backend
+        working-directory: ./taskB/backend
     steps:
       - uses: actions/checkout@v1
       - name: Setup Nodejs
