@@ -27,6 +27,11 @@ jobs:
         run: npm ci --production
       - name: print list and stuff
         run: ls
+      - name: |
+          echo i'm currently at
+          pwd
+          echo with these files
+          ls
       - name: zip
         uses: montudor/action-zip@v0.1.1
         with:
