@@ -50,7 +50,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ap-southeast-1
           function_name: taskb-redo
-          zip_file: app.zip
+          zip_file: ./app.zip
         - name: printing things
           run: |
             echo "where am i?"
