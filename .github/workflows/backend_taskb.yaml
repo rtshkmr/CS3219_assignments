@@ -41,7 +41,13 @@ jobs:
       - name: Install zip
         uses: montudor/action-zip@v1
       - name: Zip
-        run: zip -qq -r ./nodejs.zip ./
+        run: |
+        zip -qq -r ./nodejs.zip ./
+        echo zipped file already, checking pwd
+        pwd
+        echo checking what's in pwd
+        ls
+
       - name: Push to lambda
         uses: appleboy/lambda-action@master
         with:
