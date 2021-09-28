@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: print msg
         run: |
-        echo hello world
-        echo kill me already
+        echo hello world,
+        echo kill me already.
 #      - uses: actions/checkout@v1
 #      - name: Setup Nodejs
 #        uses: actions/setup-node@v1
