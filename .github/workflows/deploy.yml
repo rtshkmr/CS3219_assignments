@@ -51,11 +51,3 @@ jobs:
           aws_region: ap-southeast-1
           function_name: taskb-redo
           zip_file: ./app.zip
-        - name: printing things
-          run: |
-            echo "where am i?"
-            pwd
-            echo "who am i?"
-            whoami
-            echo "whats near me?"
-            ls
