@@ -49,4 +49,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ap-southeast-1
           function_name: test
-          zip_file: ./app/nodejs.zip
+          zip_file: ./nodejs.zip
