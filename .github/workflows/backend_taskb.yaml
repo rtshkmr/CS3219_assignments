@@ -26,8 +26,11 @@ jobs:
         uses: supercharge/mongodb-github-action@1.6.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
-#      - name: Install dependencies
-#        run: npm install
+      - name: Install dependencies
+        run: |
+          echo " checking current directory befroe installing deps"
+          pwd
+          npm install
       - name: Test Endpoints
         run: |
           echo "Checking current directory before running test :"
