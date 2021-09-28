@@ -28,7 +28,7 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
 #      - name: Install dependencies
 #        run: npm install
-#      - name: Test Endpoints
+      - name: Test Endpoints
         run: |
           echo "Checking current directory before running test :"
           pwd
