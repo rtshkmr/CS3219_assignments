@@ -28,7 +28,7 @@ jobs:
       - name: print list and stuff
         run: ls
       - name: figuring out my place in the world
-      - run: |
+        run: |
           echo i'm currently at
           pwd
           echo with these files
