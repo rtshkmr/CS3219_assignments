@@ -7,11 +7,11 @@ on:
       - "**"
 jobs:
   deploy:
-    name: task b deploy
+    name: deploy
     strategy:
       matrix:
-        node-version: [ 14.x ]
-        mongodb-version: [ "5.0" ]
+        node-version: [14.x]
+        mongodb-version: ["5.0"]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -27,7 +27,7 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
       - name: Install dependencies
-        run: echo " checking current directory befroe installing deps"
+        run: npm ci --production
       - name: Test Endpoints
         run: npm test
         env:
@@ -42,5 +42,5 @@ jobs:
 #          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
 #          aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
 #          aws_region: ap-southeast-1
-#          function_name: test
+#          function_name: 
 #          zip_file: ./app/nodejs.zip
