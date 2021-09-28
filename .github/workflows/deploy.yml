@@ -36,7 +36,7 @@ jobs:
       - name: zip
         uses: montudor/action-zip@v0.1.1
         with:
-          args: zip -qq -r ./app.zip ./
+          args: zip -r ./app.zip ./
       - name: figuring out my place in the world after zipping
         run: |
           echo "i'm currently at"
@@ -45,10 +45,6 @@ jobs:
           ls
       - name: push to lambda
         uses: appleboy/lambda-action@master
-        working-directory: ./taskB/backend
-        run: |
-          echo "hello world"
-          ls
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
