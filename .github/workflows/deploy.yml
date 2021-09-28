@@ -27,7 +27,7 @@ jobs:
         run: npm ci --production
       - name: print list and stuff
         run: ls
-      = name: Run all chai tests
+      - name: Run all chai tests
         run: npm test
         env:
           CI:true
