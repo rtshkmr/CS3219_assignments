@@ -1,8 +1,8 @@
 name: Test and deploy to lambda
 on:
   push:
-    #    paths:
-    #      - "taskB/backend/**"
+        paths:
+          - "taskB/backend/**"
     branches:
       - "**"
 jobs:

@@ -1,0 +1,38 @@
+# /.github/workflows/deploy.yml
+
+name: deploy to lambda
+on:
+  push:
+    paths:
+      - "taskB/backend/**"
+    branches:
+      - "**"
+jobs:
+  deploy:
+    name: deploy
+    strategy:
+      matrix:
+        node-version: [14.x]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm ci --production
+      - name: print list and stuff
+        run: ls
+      - name: zip
+        uses: montudor/action-zip@v0.1.1
+        with:
+          args: zip -qq -r ./app.zip ./
+      - name: push to lambda
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+          aws_region: eu-central-1
+          function_name: express-lambda-example
+          zip_file: app.zip
