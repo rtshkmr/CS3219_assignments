@@ -3,8 +3,8 @@
 name: deploy to lambda
 on:
   push:
-#    paths:
-#      - "taskB/backend/**"
+    #    paths:
+    #      - "taskB/backend/**"
     branches:
       - "**"
 jobs:
@@ -12,7 +12,7 @@ jobs:
     name: deploy
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [ 14.x ]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,14 +29,20 @@ jobs:
         run: ls
       - name: figuring out my place in the world
         run: |
-          echo i'm currently at
+          echo "i'm currently at"
           pwd
-          echo with these files
+          echo "with these files"
           ls
       - name: zip
         uses: montudor/action-zip@v0.1.1
         with:
           args: zip -qq -r ./app.zip ./
+      - name: figuring out my place in the world after zipping
+        run: |
+          echo "i'm currently at"
+          pwd
+          echo "with these files"
+          ls
       - name: push to lambda
         uses: appleboy/lambda-action@master
         with:
