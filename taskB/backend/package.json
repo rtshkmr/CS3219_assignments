@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "cross-env MONGODB_URL=mongodb://localhost/notes nodemon dev.js",
-    "test": "cross-env MONGODB_URL=mongodb://localhost/notesTest mocha --recursive --exit --timeout 10000"
+    "test": "mocha --recursive --exit --timeout 10000",
+    "test_local": "cross-env MONGODB_URL=mongodb://localhost/notesTest mocha --recursive --exit --timeout 10000"
   },
   "author": "Ritesh Kumar",
   "license": "ISC",
