@@ -1,4 +1,4 @@
-# /.github/workflows/deploy.yml
+# /.github/workflows/backend_deploy.yml
 
 name: deploy to lambda
 on:
@@ -59,4 +59,9 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ap-southeast-1
           function_name: taskb-redo
-          zip_file: lambda/app.zip
+          zip_file: app.zip
+      - name: what do I do now
+        run: |
+          whoami
+          pwd
+          ls

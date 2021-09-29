@@ -4,7 +4,7 @@
   "description": "CS3219 Task B restarting",
   "main": "app.js",
   "scripts": {
-    "dev": "cross-env MONGODB_URL=mongodb://localhost/notes nodemon dev.js",
+    "dev": " nodemon dev.js",
     "test": "mocha --recursive --exit --timeout 10000",
     "test_local": "cross-env MONGODB_URL=mongodb://localhost/notesTest mocha --recursive --exit --timeout 10000"
   },
