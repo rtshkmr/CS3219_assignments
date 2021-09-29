@@ -33,7 +33,7 @@ jobs:
       - name: print list and stuff
         run: ls
       - name: Run all chai tests
-        run: npm test_local
+        run: npm run test_local
         env:
           CI: true
       - name: figuring out my place in the world
