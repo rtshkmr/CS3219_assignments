@@ -45,7 +45,7 @@ jobs:
       - name: zip
         uses: montudor/action-zip@v0.1.1
         with:
-          args: zip -r -i ./app.zip ./taskB/backend/*
+          args: cd ./taskB/backend && zip -r ../../app.zip .
       - name: figuring out my place in the world after zipping
         run: |
           echo "i'm currently at"
