@@ -42,7 +42,8 @@ jobs:
           pwd
           echo "with these files"
           ls
-      -name: Install zip
+          tree -L 3
+      - name: Install zip
         uses: montudor/action-zip@v0.1.1
       - name: zip desired contents of taskB/backend
         run: |
