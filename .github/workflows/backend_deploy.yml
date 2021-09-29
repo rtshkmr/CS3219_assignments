@@ -46,9 +46,7 @@ jobs:
       - name: Install zip
         uses: montudor/action-zip@v0.1.1
       - name: zip desired contents of taskB/backend
-        run: |
-        zip -r app.zip ./
-        mv app.zip ../../
+        run: zip -r app.zip ./
         working-directory: ./taskB/backend/
       - name: figuring out my place in the world after zipping
         run: |
@@ -63,7 +61,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ap-southeast-1
           function_name: taskb-redo
-          zip_file: app.zip
+          zip_file: ./taskB/backend/app.zip
       - name: what do I do now
         run: |
           whoami
