@@ -10,7 +10,9 @@ app.use(cors());
 
 // to check the app loads up and for testing lambda
 app.get("/", function (req, res) {
-  res.send("Happy test, hello world");
+  res.json({
+    "msg":"Happy test, hello world"
+  });
 });
 
 function failSafeHandler(error, req, res, next) { // generic handler
