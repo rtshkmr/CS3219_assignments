@@ -43,10 +43,14 @@ jobs:
           echo "with these files"
           ls
           tree -L 3
-      - name: zip
+      -name: Install zip
         uses: montudor/action-zip@v0.1.1
-        with:
-          args: zip ./app.zip taskB/backend/*
+      - name: zip desired contents of taskB/backend
+        run: |
+        zip -r app.zip ./
+        mv app.zip ../../
+        tree ../../ L -3
+        working-directory: ./taskB/backend/
       - name: figuring out my place in the world after zipping
         run: |
           echo "i'm currently at"
