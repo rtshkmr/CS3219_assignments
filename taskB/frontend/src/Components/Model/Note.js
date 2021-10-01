@@ -3,10 +3,10 @@ import React from "react";
 import CardHeader from "react-bootstrap/CardHeader";
 
 export default function Note(props) {
-   const {name, description} = props ;
+   const {title, description} = props ;
    return <Card>
        <CardHeader>
-           {name}
+           {title}
        </CardHeader>
        {description}
    </Card>

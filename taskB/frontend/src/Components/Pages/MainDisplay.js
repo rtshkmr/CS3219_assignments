@@ -1,24 +1,39 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
 import SimpleForm from "../Forms/SimpleForm";
 import Note from "../Model/Note";
+import fetchExistingNotes from "../../DataFetchers/NotesFetcher";
 
 function MainDisplay() {
     const [notes, setNotes] = useState([]);
-    const [fetched, setFetched] = useState(true);
+    const [fetched, setFetched] = useState(false);
     let notes_ = [{
-        name:"Ritesh",
-        description:"MyDesc"}, {
-        name:"Ritesh2",
-        description:"MyDesc2"}]
+        name: "Ritesh",
+        description: "MyDesc"
+    }, {
+        name: "Ritesh2",
+        description: "MyDesc2"
+    }]
+
+
+    useEffect(async () => {
+        console.log("trying to fetch notes!")
+            const fetchedNotes = await fetchExistingNotes()
+            if (!fetchedNotes.empty) {
+                console.log("non-empty fetched notes!", fetchedNotes)
+                setNotes(fetchedNotes)
+                setFetched(true)
+            }
+        }
+        , [])
 
 
     const notesDisplay = fetched
         ? <div>
             notes have been fetched!
-            {notes_.map(note => {
-                return <Note
-                    name={note.name}
+            {notes.map( (note, i) => {
+                return <Note key={i}
+                    title={note.title}
                     description={note.description}/>
             })}
         </div>
