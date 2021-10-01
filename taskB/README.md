@@ -1,3 +1,9 @@
+>Student Name: Ritesh Kumar
+
+>Matriculation Number: A0201829H
+
+>[GitHub Repository](https://github.com/rtshkmr/CS3219_assignments/tree/main/taskB)
+
 # B: A simple CRUD Application
 
 ## B1: A simple backend
