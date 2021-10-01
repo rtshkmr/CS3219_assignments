@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
 import SimpleForm from "../Forms/SimpleForm";
 import Note from "../Model/Note";
-import {deleteNote, fetchExistingNotes, postNote} from "../../Functions/NotesFunctions";
+import {deleteNote, editNote, fetchExistingNotes, postNote} from "../../Functions/NotesFunctions";
 
 function MainDisplay() {
     const [notes, setNotes] = useState([]);
@@ -17,6 +17,10 @@ function MainDisplay() {
     function destroyNote(id) {
         console.log("deleting note with id:", id)
         deleteNote(id).then(() => setNotesCount(notesCount - 1));
+    }
+
+    function modifyNote(note) {
+        editNote(note).then(() => setNotesCount(notesCount + 1));
     }
 
     useEffect(async () => {
@@ -40,7 +44,9 @@ function MainDisplay() {
                              id={note._id}
                              title={note.title}
                              description={note.description}
-                             deleteNote={destroyNote}/>
+                             deleteNote={destroyNote}
+                             editNote={modifyNote}
+                />
             })}
         </div>
         : <Card>
@@ -54,7 +60,7 @@ function MainDisplay() {
                     {notesDisplay}
                 </Col>
                 <Col>
-                    <SimpleForm addNote={addNote}/>
+                    <SimpleForm submitHandler={addNote}/>
                 </Col>
             </Row>
         </Container>

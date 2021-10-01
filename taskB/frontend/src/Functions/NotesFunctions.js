@@ -42,3 +42,16 @@ export function deleteNote(id) {
             console.log("there was a data posting error :(", err)
         })
 }
+export function editNote(note) {
+    console.log("this is the note:", note)
+    console.log("...deleting note with id:", note.noteid);
+    const editEndpoint = endpoint + "/" + note._id;
+
+    return axios.put(editEndpoint, note)
+        .then( response => {
+            console.log("edited" + note.id + " ... this is the response", response.data.data)
+        })
+        .catch((err) => {
+            console.log("there was a data posting error :(", err)
+        })
+}

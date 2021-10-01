@@ -1,20 +1,29 @@
 import React, {useState} from 'react';
-import {Form, Container, Button} from "react-bootstrap";
+import {Button, Container, Form} from "react-bootstrap";
 
-function SimpleForm (props) {
-    const {addNote} = props
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
+function SimpleForm(props) {
+    const {noteId, currentTitle, currentDescription, submitHandler} = props
+    const [title, setTitle] = useState(currentTitle)
+    const [description, setDescription] = useState(currentDescription)
     return (
         <Container>
             <Form>
                 <Form.Group controlId="formName">
-                    <Form.Label>write ur note down.</Form.Label>
+                    <Form.Label>
+                        {(!currentTitle || !currentDescription) ? "write ur new note down." : " edit your note"
+                        }
+
+
+                    </Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="name plz"
+                        placeholder={
+                            title ? "previous title: \n" + title
+                                : "Enter title"
+
+                        }
                         onChange={e => {
-                           console.log("name change", e.target.value)
+                            console.log("name change", e.target.value)
                             setTitle(e.target.value)
                         }}
                     />
@@ -22,7 +31,8 @@ function SimpleForm (props) {
                 <Form.Group controlId="formNote">
                     <Form.Control
                         type="textarea"
-                        placeholder="your note plz"
+                        placeholder={description ? "previous description: \n" + description
+                            : "Enter description"}
                         onChange={e => {
                             console.log("note change", e.target.value)
                             setDescription(e.target.value)
@@ -34,13 +44,14 @@ function SimpleForm (props) {
                     type="reset"
                     onClick={(e) => {
                         console.log("pressed submit, here's the event", e)
-                        if(!(title === "" || description === "")) {
+                        if (!(title === "" || description === "")) {
                             console.log("non-empty values to submit")
                             const note = {
+                                "_id": noteId,
                                 "title": title,
                                 "description": description
                             }
-                            addNote(note)
+                            submitHandler(note)
                         }
                     }}
                 >
