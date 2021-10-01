@@ -1,19 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Form, Container, Button} from "react-bootstrap";
+import postNote from "../../DataFetchers/NotesPoster";
 
-
-function SimpleForm () {
+function SimpleForm (props) {
+    const {addNote} = props
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
     return (
         <Container>
             <Form>
                 <Form.Group controlId="formName">
-                    <Form.Label>ur name pls</Form.Label>
-                    <Form.Control type="text" placeholder="name plz" />
+                    <Form.Label>write ur note down.</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="name plz"
+                        onChange={e => {
+                           console.log("name change", e.target.value)
+                            setTitle(e.target.value)
+                        }}
+                    />
                 </Form.Group>
                 <Form.Group controlId="formNote">
-                    <Form.Control type="text" placeholder="your note plz" />
+                    <Form.Control
+                        type="textarea"
+                        placeholder="your note plz"
+                        onChange={e => {
+                            console.log("note change", e.target.value)
+                            setDescription(e.target.value)
+                        }}
+                    />
                 </Form.Group>
-                <Button variant="outline-danger" type="submit">
+                <Button
+                    variant="outline-danger"
+                    type="reset"
+                    onClick={(e) => {
+                        console.log("pressed submit, here's the event", e)
+                        if(!(title === "" || description === "")) {
+                            console.log("non-empty values to submit")
+                            const note = {
+                                "title": title,
+                                "description": description
+                            }
+                            addNote(note)
+                        }
+                    }}
+                >
                     Submit
                 </Button>
             </Form>

@@ -3,18 +3,17 @@ import {Card, Col, Container, Row} from "react-bootstrap";
 import SimpleForm from "../Forms/SimpleForm";
 import Note from "../Model/Note";
 import fetchExistingNotes from "../../DataFetchers/NotesFetcher";
+import postNote from "../../DataFetchers/NotesPoster";
 
 function MainDisplay() {
     const [notes, setNotes] = useState([]);
     const [fetched, setFetched] = useState(false);
-    let notes_ = [{
-        name: "Ritesh",
-        description: "MyDesc"
-    }, {
-        name: "Ritesh2",
-        description: "MyDesc2"
-    }]
+    const [notesCount, setNotesCount] = useState(0)
 
+    function addNote(note) {
+        postNote(note);
+        setNotesCount(notesCount + 1);
+    }
 
     useEffect(async () => {
         console.log("trying to fetch notes!")
@@ -22,15 +21,16 @@ function MainDisplay() {
             if (!fetchedNotes.empty) {
                 console.log("non-empty fetched notes!", fetchedNotes)
                 setNotes(fetchedNotes)
+                setNotesCount(fetchedNotes.length)
                 setFetched(true)
             }
         }
-        , [])
+        , [notesCount])
 
 
     const notesDisplay = fetched
         ? <div>
-            notes have been fetched!
+            {notesCount} notes have been fetched!
             {notes.map( (note, i) => {
                 return <Note key={i}
                     title={note.title}
@@ -38,7 +38,7 @@ function MainDisplay() {
             })}
         </div>
         : <Card>
-            Notes not fetched yet
+            No notes to show.
         </Card>
 
     return <div>
@@ -48,7 +48,7 @@ function MainDisplay() {
                     {notesDisplay}
                 </Col>
                 <Col>
-                    <SimpleForm/>
+                    <SimpleForm addNote={addNote}/>
                 </Col>
             </Row>
         </Container>

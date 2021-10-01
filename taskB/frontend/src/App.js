@@ -1,5 +1,4 @@
 import './App.css';
-import SimpleForm from "./Components/Forms/SimpleForm";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MainDisplay from "./Components/Pages/MainDisplay";
 
