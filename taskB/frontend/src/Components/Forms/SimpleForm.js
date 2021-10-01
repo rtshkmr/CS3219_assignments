@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Form, Container, Button} from "react-bootstrap";
-import postNote from "../../DataFetchers/NotesPoster";
 
 function SimpleForm (props) {
     const {addNote} = props

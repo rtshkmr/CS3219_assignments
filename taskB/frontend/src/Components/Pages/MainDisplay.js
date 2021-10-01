@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
 import SimpleForm from "../Forms/SimpleForm";
 import Note from "../Model/Note";
-import fetchExistingNotes from "../../DataFetchers/NotesFetcher";
-import postNote from "../../DataFetchers/NotesPoster";
+import {deleteNote, fetchExistingNotes, postNote} from "../../Functions/NotesFunctions";
 
 function MainDisplay() {
     const [notes, setNotes] = useState([]);
@@ -11,12 +10,17 @@ function MainDisplay() {
     const [notesCount, setNotesCount] = useState(0)
 
     function addNote(note) {
-        postNote(note);
-        setNotesCount(notesCount + 1);
+        postNote(note).then(() =>
+            setNotesCount(notesCount + 1));
+    }
+
+    function destroyNote(id) {
+        console.log("deleting note with id:", id)
+        deleteNote(id).then(() => setNotesCount(notesCount - 1));
     }
 
     useEffect(async () => {
-        console.log("trying to fetch notes!")
+            console.log("trying to fetch notes!")
             const fetchedNotes = await fetchExistingNotes()
             if (!fetchedNotes.empty) {
                 console.log("non-empty fetched notes!", fetchedNotes)
@@ -31,10 +35,12 @@ function MainDisplay() {
     const notesDisplay = fetched
         ? <div>
             {notesCount} notes have been fetched!
-            {notes.map( (note, i) => {
+            {notes.map((note, i) => {
                 return <Note key={i}
-                    title={note.title}
-                    description={note.description}/>
+                             id={note._id}
+                             title={note.title}
+                             description={note.description}
+                             deleteNote={destroyNote}/>
             })}
         </div>
         : <Card>
