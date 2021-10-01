@@ -1,0 +1,69 @@
+# /.github/workflows/backend_deploy.yml
+
+name: deploy to lambda
+on:
+  push:
+    #    paths:
+    #      - "taskB/backend/**"
+    branches:
+      - "**"
+jobs:
+  deploy:
+    name: deploy
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+        mongodb-version: [ "5.0" ]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./taskB/backend
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+          mongodb-version: ${{matrix.mongodb-version}}
+      - name: npm install dependencies
+        run: npm ci --production
+      - name: print list and stuff
+        run: ls
+      - name: Run all chai tests
+        run: npm run test_local
+        env:
+          CI: true
+      - name: figuring out my place in the world
+        run: |
+          echo "i'm currently at"
+          pwd
+          echo "with these files"
+          ls
+          tree -L 3
+      - name: Install zip
+        uses: montudor/action-zip@v0.1.1
+      - name: zip desired contents of taskB/backend
+        run: zip -r app.zip ./
+        working-directory: ./taskB/backend/
+      - name: figuring out my place in the world after zipping
+        run: |
+          echo "i'm currently at"
+          pwd
+          echo "with these files"
+          ls
+      - name: push to lambda
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+          aws_region: ap-southeast-1
+          function_name: taskb-redo
+          zip_file: ./taskB/backend/app.zip
+      - name: what do I do now
+        run: |
+          whoami
+          pwd
+          ls
