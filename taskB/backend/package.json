@@ -1,25 +1,25 @@
 {
-  "name": "cs3219_taskb_backend",
+  "name": "cs3219-taskb",
   "version": "1.0.0",
-  "description": "Simple express server that does CRUD on quotes with a mongoose db paired with it.",
-  "main": "index.js",
+  "description": "CS3219 Task B restarting",
+  "main": "app.js",
   "scripts": {
-    "test": "mocha --exit",
-    "dev": "nodemon server.js"
+    "dev": " nodemon dev.js",
+    "test": "mocha --recursive --exit --timeout 10000",
+    "test_local": "cross-env MONGODB_URL=mongodb://localhost/notesTest mocha --recursive --exit --timeout 10000"
   },
   "author": "Ritesh Kumar",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "mongodb": "^4.1.2"
-  },
-  "devDependencies": {
+    "@vendia/serverless-express": "^4.3.11",
+    "aws-serverless-express": "^3.4.0",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "mocha": "^9.1.1",
-    "nodemon": "^2.0.12"
+    "mongoose": "^6.0.4"
   }
 }
