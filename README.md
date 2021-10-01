@@ -13,6 +13,6 @@ Cheers
 |----|----|----|----| ---- |
 |[A1](taskA/A1_IntroductionToDocker)| Introduction to Docker|Pending Submission|...|2m|
 |[A2](taskA/A2_IntroductionToKubernetes)| Introduction to Kubernetes|Pending Submission|...|2m|
-|A3| Introduction to Docker|Unattempted|...|...|
+|A3| Advanced Kubernetes |Unattempted|...|...|
 |[B](taskB)| Simple CRUD Application | Pending Submission |...| B1:3m  B2:3m  B3:3m  B4:3m|
 |[F](taskF)| Caching using Redis |Pending Submission|...|3m|
