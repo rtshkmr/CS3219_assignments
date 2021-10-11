@@ -4,3 +4,6 @@
 [submodule "taskA/A2_IntroductionToKubernetes/docker_tut"]
 	path = taskA/A2_IntroductionToKubernetes/docker_tut
 	url = https://github.com/docker/getting-started.git
+[submodule "tutorials/cs3219-devops"]
+	path = tutorials/cs3219-devops
+	url = https://github.com/WeiTangLau/cs3219-devops.git
