@@ -1,0 +1,5 @@
+# named 00 to start first since it's the first dependency
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cs3219

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cs3219-db
+  namespace: cs3219
+spec:
+  type: ClusterIP # change this from ClusterIP to NodePort to connect to the db locally
+  selector: # defines a pod selector (?)
+    app: cs3219-db
+  ports:
+    - port: 3306
+      targetPort: 31306 # target port actually defaults to the same as port field so this is redundant

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog-service
+  namespace: cs3219
+spec:
+  selector:
+    app: catalog-service
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 31307 # nodeport external service is given to be 31307 (how to find(?))
+  type: NodePort
