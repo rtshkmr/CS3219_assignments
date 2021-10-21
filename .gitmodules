@@ -7,3 +7,6 @@
 [submodule "tutorials/cs3219-devops"]
 	path = tutorials/cs3219-devops
 	url = https://github.com/WeiTangLau/cs3219-devops.git
+[submodule "tutorials/cs3219_devops_original_repo"]
+	path = tutorials/cs3219_devops_original_repo
+	url = https://github.com/WeiTangLau/cs3219-devops
