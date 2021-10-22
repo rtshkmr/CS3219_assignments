@@ -1,0 +1,54 @@
+# This docker compose file is adapted from the following repo: https://github.com/conduktor/kafka-stack-docker-compose/blob/master/zk-single-kafka-multiple.yml
+version: "2"
+
+services:
+  # config for the zookeeper service. Will be used by all the kafka nodes
+  zoo1:
+    image: confluentinc/cp-zookeeper:latest
+    hostname: zoo1
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka-1:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zoo1
+    ports:
+      - 29092:29092 # large enough
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
+      # ensure it's localhost because we will enter the container and exec cmds there
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+  kafka-2:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zoo1
+    ports:
+      - 39092:39092
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
+      # ensure it's localhost because we will enter the container and exec cmds there
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:9092,PLAINTEXT_HOST://localhost:39092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+  kafka-3:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zoo1
+    ports:
+      - 49092:49092
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:9092,PLAINTEXT_HOST://localhost:49092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
