@@ -18,11 +18,16 @@ app.post("/register", async (req, res) => {
     let encryptedPassword;
     try {
         // Get user input
-        const {first_name, last_name, email, password} = req.body;
+        const {first_name, last_name, email, password, role} = req.body;
+        console.log("registering role:", role)
 
         // Validate user input
         if (!(email && password && first_name && last_name)) {
             res.status(400).send("All input is required");
+        }
+
+        if(!role in Roles){
+           res.status(400).send("what kinda role is that?")
         }
 
         // check if user already exist
@@ -41,12 +46,15 @@ app.post("/register", async (req, res) => {
             last_name,
             email: email.toLowerCase(), // sanitize: convert email to lowercase
             password: encryptedPassword,
+            role: Roles[role],
         });
+        console.log("user created");
+        console.log(user);
 
         // Create token
         // save user token
         user.token = jwt.sign(
-            {user_id: user._id, email},
+            {user_id: user._id, email, role},
             process.env.TOKEN_KEY,
             {
                 expiresIn: "2h",
@@ -78,7 +86,7 @@ app.post("/login", async (req, res) => {
         if (user && (await bcrypt.compare(password, user.password))) {
             // Create token
             const token = jwt.sign(
-                { user_id: user._id, email },
+                { user_id: user._id, email, role: user.role },
                 process.env.TOKEN_KEY,
                 {
                     expiresIn: "2h",
@@ -89,7 +97,7 @@ app.post("/login", async (req, res) => {
             user.token = token;
 
             // user
-            res.status(200).json(user);
+            return res.status(200).json(user);
         }
         res.status(400).send("Invalid Credentials");
     } catch (err) {
@@ -99,11 +107,16 @@ app.post("/login", async (req, res) => {
 });
 
 
-const auth = require("./middleware/auth");
+const {verifyVipToken, verifyToken} = require("./middleware/auth");
+const Roles = require("./model/roles");
 
-app.get("/welcome", auth, (req, res) => {
+app.get("/welcome", verifyToken, (req, res) => {
     res.status(200).send("Welcome 🙌 ");
 });
+
+app.get("/lounge", verifyVipToken, (req, res) => {
+    res.status(200).send("You my VIP <3")
+})
 //============================================================================
 
 module.exports = app;
