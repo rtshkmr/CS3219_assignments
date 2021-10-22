@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
 spec:
   rules:
-    - host: example.com
+    - host: example.com # for host-based routing: https://kubernetes.github.io/ingress-nginx/user-guide/basic-usage/
       http:
         paths:
           - path: /
