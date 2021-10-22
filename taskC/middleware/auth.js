@@ -10,8 +10,15 @@ const config = process.env;
 const verifyToken = (req, res, next) => {
     // we add prepend role to the token via x-access-token: <token><role>
     const accessTokenHeader = req.headers["x-access-token"]
-    const token =
-        req.body.token || req.query.token || accessTokenHeader.split(" ")[0];
+    let token;
+    try {
+        token =
+            req.body.token || req.query.token || accessTokenHeader.split(" ")[0];
+    } catch (err) {
+        token = undefined;
+    }
+
+
     if (!token) {
         return res.status(403).send("A token is required for authentication");
     }
@@ -27,9 +34,13 @@ const verifyVipToken = (req, res, next) => {
     console.log("verifying admin token...");
     console.log(req)
     const accessTokenHeader = req.headers["x-access-token"]
-    const token =
-        req.body.token || req.query.token || accessTokenHeader.split(" ")[0];
-
+    let token;
+    try {
+        token =
+            req.body.token || req.query.token || accessTokenHeader.split(" ")[0];
+    } catch (err) {
+        token = undefined;
+    }
     if (!token) {
         return res.status(403).send("A token is required for authentication");
     }
