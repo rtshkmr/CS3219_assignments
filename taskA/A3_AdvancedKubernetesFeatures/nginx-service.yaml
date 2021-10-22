@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cs3219-svc
+  labels:
+    app: cs3219
+spec:
+  ports:
+    - port: 80
+      nodePort: 32407
+      protocol: TCP
+  selector:
+    app: cs3219 # same as deployment
+  type: NodePort

@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cs3219-sticky-ingress
+  # see annotations here: https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+spec:
+  rules:
+    - host: example.com # for host-based routing: https://kubernetes.github.io/ingress-nginx/user-guide/basic-usage/
+      http:
+        paths:
+          - path: /
+            backend:
+              service:
+                name: cs3219-svc # needs to match with the service config
+                port:
+                  number: 80
+            pathType: Prefix

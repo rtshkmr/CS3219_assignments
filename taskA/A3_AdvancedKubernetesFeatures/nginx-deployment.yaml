@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cs3219-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cs3219
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cs3219
+    spec:
+      containers:
+        - name: cs3219
+          image: nginx-image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
