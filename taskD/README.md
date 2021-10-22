@@ -1,4 +1,9 @@
 # Task D: Pub-Sub Messaging via Kafka
+>Student Name: Ritesh Kumar
+
+>Matriculation Number: A0201829H
+
+>[GitHub Repository](https://github.com/rtshkmr/CS3219_assignments/tree/main/taskD)
 
 ## Background
 
