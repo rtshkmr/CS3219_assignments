@@ -18,3 +18,4 @@ Cheers
 |[C](taskC)| Authentication and Authorization| [writeup](taskC/resources/A0201829H.pdf) |4m|
 |[D](taskD)| Pub-Sub Messaging via Kafka| [writeup](taskD/resources/A0201829H.pdf) |6m|
 |[F](taskF)| Caching using Redis | [writeup](taskF/resources/A0201829H_F.pdf)|3m|
+|[G](taskG)| Module Content Enhancement | [writeup](taskG/resources/A0201829H_G.pdf)|3m|
