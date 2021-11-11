@@ -15,6 +15,7 @@ const bcrypt = require("bcryptjs");
 // =========================== ROUTES ======================================
 // REGISTER ROUTE
 app.post("/register", async (req, res) => {
+    console.log("hello");
     let encryptedPassword;
     try {
         // Get user input
@@ -117,6 +118,9 @@ app.get("/welcome", verifyToken, (req, res) => {
 app.get("/lounge", verifyVipToken, (req, res) => {
     res.status(200).send("You my VIP <3")
 })
+
+app.listen(process.env.API_PORT, () => {console.log("listening at port: ", process.env.API_PORT)});
+
 //============================================================================
 
 module.exports = app;

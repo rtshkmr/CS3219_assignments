@@ -9,7 +9,7 @@ exports.connect = () => {
             useUnifiedTopology: true,
         })
         .then(() => {
-            console.log("Successfully connected to database");
+            console.log("Successfully connected to database at" + MONGO_URI);
         })
         .catch((error) => {
             console.log("database connection failed. exiting now...");
